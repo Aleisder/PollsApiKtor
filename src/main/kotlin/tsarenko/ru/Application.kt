@@ -3,7 +3,6 @@ package tsarenko.ru
 import io.ktor.server.application.*
 import io.ktor.server.cio.*
 import io.ktor.server.engine.*
-import tsarenko.ru.feature.form.configurePollFormRouting
 import tsarenko.ru.plugins.*
 
 fun main() {
@@ -15,5 +14,4 @@ fun Application.module() {
     configureSerialization()
     configureDatabases()
     configureRouting()
-    configurePollFormRouting()
 }

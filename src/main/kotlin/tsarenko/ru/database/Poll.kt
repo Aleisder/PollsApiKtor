@@ -1,5 +1,8 @@
-package tsarenko.ru.feature.form.model
+package tsarenko.ru.database
 
+import kotlinx.serialization.Serializable
+
+@Serializable
 data class Poll(
     val question: String,
     val type: String,
