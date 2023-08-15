@@ -9,39 +9,25 @@ import java.time.LocalDateTime
 data class ErrorBody(
     @SerialName("http_code") val httpCode: Int,
     val request: String,
-    val time: String,
+    val time: String = LocalDateTime.now().toString(),
     val error: String
 ) {
-    class Builder {
+    companion object {
 
-        private var httpCode = 0
-        private var request = ""
-        private var error = ""
+        fun getInvalidIdError(id: String) =
+            ErrorBody(
+                httpCode = HttpStatusCode.BadRequest.value,
+                request = "/poll/$id",
+                error = "Invalid ID. Must be hex string of 24 symbols"
+            )
 
-        private var id = ""
+        fun getNoObjectFoundError(id: String) =
+            ErrorBody(
+                httpCode = HttpStatusCode.NotFound.value,
+                request = "/poll/${id}",
+                error = "This is no object with id $id"
+            )
 
-        fun setId(id: String): Builder {
-            this.id = id
-            return this
-        }
-
-        fun setErrorType(type: ErrorType): Builder {
-            when (type) {
-                ErrorType.INVALID_ID -> {
-                    httpCode = HttpStatusCode.BadRequest.value
-                    request = "/poll/$id"
-                    error = "Invalid ID. Must be hex string of 24 symbols"
-                }
-                ErrorType.OBJECT_NOT_FOUND -> {
-                    httpCode = HttpStatusCode.NotFound.value
-                    request = "/poll/$id"
-                    error = "This is no object with id $id"
-                }
-            }
-            return this
-        }
-
-        fun build() = ErrorBody(httpCode, request, LocalDateTime.now().toString(), error)
     }
 
 }

@@ -1,4 +1,4 @@
-package tsarenko.ru.database
+package tsarenko.ru.database.form
 
 import kotlinx.serialization.Serializable
 
@@ -9,3 +9,9 @@ data class Form(
     val content: List<Poll>
 )
 
+@Serializable
+data class Poll(
+    val question: String,
+    val type: String,
+    val answers: List<String>
+)
