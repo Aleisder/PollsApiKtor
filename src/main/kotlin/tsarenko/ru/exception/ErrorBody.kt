@@ -14,17 +14,17 @@ data class ErrorBody(
 ) {
     companion object {
 
-        fun getInvalidIdError(id: String) =
+        fun getInvalidIdError(path: String) =
             ErrorBody(
                 httpCode = HttpStatusCode.BadRequest.value,
-                request = "/poll/$id",
+                request = path,
                 error = "Invalid ID. Must be hex string of 24 symbols"
             )
 
-        fun getNoObjectFoundError(id: String) =
+        fun getNoObjectFoundError(id: String, path: String) =
             ErrorBody(
                 httpCode = HttpStatusCode.NotFound.value,
-                request = "/poll/${id}",
+                request = path,
                 error = "This is no object with id $id"
             )
 
