@@ -5,13 +5,13 @@ import io.ktor.server.application.*
 import io.ktor.server.request.*
 import io.ktor.server.response.*
 import tsarenko.ru.database.form.Form
-import tsarenko.ru.database.form.FormRepository
+import tsarenko.ru.database.form.FormService
 import tsarenko.ru.exception.ErrorBody
 import tsarenko.ru.util.toMongoId
 
 class FormController(private val call: ApplicationCall) {
 
-    private val repository = FormRepository()
+    private val repository = FormService()
 
     suspend fun getForm(id: String) {
         validateId(call, id)

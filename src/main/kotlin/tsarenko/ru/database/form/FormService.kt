@@ -2,7 +2,7 @@ package tsarenko.ru.database.form
 
 import org.litote.kmongo.*
 
-class FormRepository {
+class FormService {
 
     private val collection = KMongo
         .createClient()
